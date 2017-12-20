@@ -1,0 +1,52 @@
+---
+- name: Set Users
+  user:
+    name: '{{ item.name | default(item) }}'
+    comment: '{{ item.comment | default(item.name) }}'
+    groups: '{{ item.groups | default(omit) }}'
+    shell: '{{ item.shell | default(wtd_users_default_shell) }}'
+    home: '{{ item.home | default(wtd_users_default_home_path + item.name) }}'
+    password: '{{ item.password_hash | default(wtd_users_default_password_hash) }}'
+    update_password: '{{ item.update_password | default(wtd_users_default_password_update) }}'
+    state: '{{ item.state | default(wtd_users_default_state) }}'
+    move_home: yes
+    remove: yes
+  when: item.system | default(wtd_users_default_system) == "no"
+  with_items:
+    - '{{ wtd_users_userlist }}'
+  tags:
+    - users
+    - groups
+
+- name: Set System Users
+  user:
+    name: '{{ item.name | default(item) }}'
+    comment: '{{ item.comment | default(item.name) }}'
+    groups: '{{ item.groups | default(omit) }}'
+    shell: '{{ item.shell | default(wtd_users_default_system_shell) }}'
+    home: '{{ item.home | default(wtd_users_default_system_path + item.name) }}'
+    password: '{{ item.password_hash | default(wtd_users_default_password_hash) }}'
+    update_password: '{{ item.update_password | default(wtd_users_default_password_update) }}'
+    state: '{{ item.state | default(wtd_users_default_state) }}'
+    move_home: yes
+    system: '{{ item.system | default(wtd_users_default_system) }}'
+  when: item.system | default(wtd_users_default_system) == "yes"
+  with_items:
+    - '{{ wtd_users_userlist }}'
+  tags:
+    - users
+    - groups
+    - system
+
+- name: Set authorized_keys
+  authorized_key:
+    user: "{{ item.0.name | default(item.0) }}"
+    state: present
+    key: "{{ lookup('file', item.1) | default(item.1) }}"
+    exclusive: yes
+  with_subelements:
+    - '{{ wtd_users_userlist }}'
+    - keys
+  tags:
+    - users
+    - security
