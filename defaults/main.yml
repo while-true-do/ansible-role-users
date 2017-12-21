@@ -1,11 +1,13 @@
 ---
 
-wtd_users_userlist: []
+wtd_users: []
 
 wtd_users_default_shell: "/bin/bash"
+wtd_users_default_home_path: "/home/"
 wtd_users_default_state: "present"
 wtd_users_default_password_hash: "!!"
 wtd_users_default_password_update: "always"
 
 wtd_users_default_system: "no"
 wtd_users_default_system_shell: "/sbin/nologin"
+wtd_users_default_system_path: "/var/lib/"

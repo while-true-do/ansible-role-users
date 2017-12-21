@@ -13,7 +13,7 @@
     remove: yes
   when: item.system | default(wtd_users_default_system) == "no"
   with_items:
-    - '{{ wtd_users_userlist }}'
+    - '{{ wtd_users }}'
   tags:
     - users
     - groups
@@ -32,7 +32,7 @@
     system: '{{ item.system | default(wtd_users_default_system) }}'
   when: item.system | default(wtd_users_default_system) == "yes"
   with_items:
-    - '{{ wtd_users_userlist }}'
+    - '{{ wtd_users }}'
   tags:
     - users
     - groups
@@ -45,7 +45,7 @@
     key: "{{ lookup('file', item.1) | default(item.1) }}"
     exclusive: yes
   with_subelements:
-    - '{{ wtd_users_userlist }}'
+    - '{{ wtd_users }}'
     - keys
   tags:
     - users

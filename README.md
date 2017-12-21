@@ -36,7 +36,7 @@ Below you can find the default variables.
 
 ```yaml
 ---
-wtd_users_userlist: []
+wtd_users: []
 
 wtd_users_default_shell: "/bin/bash"
 wtd_users_default_state: "present"
@@ -80,7 +80,7 @@ Simple Example:
   roles:
     - { role: while-true-do.users }
   vars:
-    wtd_users_userlist:
+    wtd_users:
       - name: user01
         keys: []
         password: HASHGOESHERE
@@ -98,7 +98,7 @@ Advanced Example:
   roles:
   - { role: while-true-do.users }
   vars:
-    wtd_users_userlist:
+    wtd_users:
       - name: user01
         state: present
         comment: "Test User 01"
