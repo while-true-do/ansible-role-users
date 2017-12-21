@@ -26,8 +26,9 @@ git clone https://github.com/while-true-do/ansible-role-users.git while-true-do.
 
 **Used Modules**
 
--   [user_module](http://docs.ansible.com/ansible/latest/user_module.html)
 -   [authorized_key_module](http://docs.ansible.com/ansible/latest/authorized_key_module.html)
+-   [file_module](http://docs.ansible.com/ansible/latest/file_module.html)
+-   [user_module](http://docs.ansible.com/ansible/latest/user_module.html)
 
 
 ## Role Variables
@@ -35,18 +36,20 @@ git clone https://github.com/while-true-do/ansible-role-users.git while-true-do.
 Below you can find the default variables. 
 
 ```yaml
----
 wtd_users: []
 
 wtd_users_default_shell: "/bin/bash"
+wtd_users_default_home_path: "/home/"
 wtd_users_default_state: "present"
 wtd_users_default_password_hash: "!!"
 wtd_users_default_password_update: "always"
-wtd_users_default_home_path: "/home/"
 
 wtd_users_default_system: "no"
 wtd_users_default_system_shell: "/sbin/nologin"
 wtd_users_default_system_path: "/var/lib/"
+
+wtd_users_default_auth_key_path: ".ssh/"
+wtd_users_default_auth_key_exclusive: true
 ```
 
 ## Dependencies
@@ -73,6 +76,8 @@ You can generate it.
 python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.using(rounds=5000).hash(getpass.getpass())"
 ```
 
+If you want to use multiple ssh keys per user please aggregate them into one file.
+
 Simple Example:
 
 ```yaml
@@ -82,12 +87,9 @@ Simple Example:
   vars:
     wtd_users:
       - name: user01
-        keys: []
         password: HASHGOESHERE
       - name: user02
-        keys: []
       - name: sysdeamon
-        keys: []
         system: yes
 ```
 
@@ -107,14 +109,12 @@ Advanced Example:
         password: HASHGOESHERE
         update_password: "always"
         groups: "wheel,adm"
-        keys:
-          - ~/.ssh/id_rsa.pub
+        keyfile: "~/.ssh/id_rsa.pub"
       - name: user02
         state: absent
-        keys: []
       - name: sysdeamon
-        keys: []
         system: yes
+        keyfile: "~/.deamon/id_rsa.pub"
 ```
 
 ## Testing

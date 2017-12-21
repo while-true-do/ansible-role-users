@@ -11,3 +11,6 @@ wtd_users_default_password_update: "always"
 wtd_users_default_system: "no"
 wtd_users_default_system_shell: "/sbin/nologin"
 wtd_users_default_system_path: "/var/lib/"
+
+wtd_users_default_auth_key_path: ".ssh/"
+wtd_users_default_auth_key_exclusive: true

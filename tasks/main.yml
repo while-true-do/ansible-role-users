@@ -40,13 +40,36 @@
 
 - name: Set authorized_keys
   authorized_key:
-    user: "{{ item.0.name | default(item.0) }}"
+    user: "{{ item.name | default(item) }}"
     state: present
-    key: "{{ lookup('file', item.1) | default(item.1) }}"
+    key: "{{ lookup('file', item.keyfile) }}"
     exclusive: yes
-  with_subelements:
-    - '{{ wtd_users }}'
-    - keys
+    manage_dir: yes
+  when: item.keyfile is defined
+  with_items:
+    - "{{ wtd_users }}"
+  tags:
+    - users
+    - security
+
+- name: Delete Users non declared authorized_keys
+  file:
+    path: "{{ item.home | default(wtd_users_default_home_path) + item.name | default(item) }}/{{ wtd_users_default_auth_key_path }}authorized_keys"
+    state: absent
+  when: (item.keyfile is not defined) and (item.system | default(wtd_users_default_system) == "no") and wtd_users_default_auth_key_exclusive
+  with_items:
+    - "{{ wtd_users }}"
+  tags:
+    - users
+    - security
+
+- name: Delete System Users non declared authorized_keys
+  file:
+    path: "{{ item.home | default(wtd_users_default_system_path) + item.name | default(item) }}/{{ wtd_users_default_auth_key_path }}authorized_keys"
+    state: absent
+  when: (item.keyfile is not defined) and (item.system | default(wtd_users_default_system) == "yes") and wtd_users_default_auth_key_exclusive
+  with_items:
+    - "{{ wtd_users }}"
   tags:
     - users
     - security
