@@ -58,7 +58,9 @@ None.
 
 ## Example Playbook
 
-You have to generate a hashed password for 'password' below each user item.
+You have to generate a hashed password as value in 'password_hash' for each user item if you want them to be able to login
+via password.
+
 For the below example, you have to have passlib installed.
 
 ```
@@ -87,7 +89,7 @@ Simple Example:
   vars:
     wtd_users:
       - name: user01
-        password: HASHGOESHERE
+        password_hash: HASHGOESHERE
       - name: user02
       - name: sysdeamon
         system: yes
@@ -106,7 +108,7 @@ Advanced Example:
         comment: "Test User 01"
         shell: "/bin/bash"
         home: "/home/custom_path"
-        password: HASHGOESHERE
+        password_hash: HASHGOESHERE
         update_password: "always"
         groups: "wheel,adm"
         keyfile: "~/.ssh/id_rsa.pub"
