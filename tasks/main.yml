@@ -38,14 +38,28 @@
     - groups
     - system
 
-- name: Set authorized_keys
+- name: Set authorized_keys for files
   authorized_key:
     user: "{{ item.name | default(item) }}"
     state: present
     key: "{{ lookup('file', item.keyfile) }}"
     exclusive: yes
     manage_dir: yes
-  when: item.keyfile is defined
+  when: item.keyfile is defined and not (item.keyfile | match("^https://") or item.keyfile | match("^http://"))
+  with_items:
+    - "{{ wtd_users }}"
+  tags:
+    - users
+    - security
+
+- name: Set authorized_keys for weblinks
+  authorized_key:
+    user: "{{ item.name | default(item) }}"
+    state: present
+    key: "{{ item.keyfile }}"
+    exclusive: yes
+    manage_dir: yes
+  when: item.keyfile is defined and (item.keyfile | match("^https://") or item.keyfile | match("^http://"))
   with_items:
     - "{{ wtd_users }}"
   tags:

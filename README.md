@@ -79,6 +79,7 @@ python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_c
 ```
 
 If you want to use multiple ssh keys per user please aggregate them into one file.
+You are also able to use a http:// or https:// link to get a public key file, e.g. from github with <https://github.com/username.keys>
 
 Simple Example:
 
@@ -116,7 +117,7 @@ Advanced Example:
         state: absent
       - name: sysdeamon
         system: yes
-        keyfile: "~/.deamon/id_rsa.pub"
+        keyfile: "https://github.com/username.keys"
 ```
 
 ## Testing
