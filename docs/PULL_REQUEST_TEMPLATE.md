@@ -13,7 +13,7 @@ Further paragraphs come after blank lines, if needed.
 -->
 ## Reference
 <!--
-Please be aware, that every pull-request/merge-request for released (stable) repo needs an issue.
+Please be aware, that every pull-request/merge-request for released (stable) repositories needs an issue.
 -->
  - Resolves: #12, #13
  - See also: #33, #44

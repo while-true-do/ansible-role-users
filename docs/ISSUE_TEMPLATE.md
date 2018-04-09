@@ -20,4 +20,4 @@ https://github.com/while-true-do/community/docs/CONTRIBUTING.md
 
 ### Attachments
 
-<!-- Please attach everything, what can help to underastand the issue like screenshots, code snippets, error codes, animated gifs, etc. -->
+<!-- Please attach everything, what can help to understand the issue like screenshots, code snippets, error codes, animations, etc. -->

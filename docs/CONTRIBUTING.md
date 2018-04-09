@@ -1,4 +1,6 @@
-# Contribution Guidelines
+# Contribution Code
+| While True Do Contribution Guidelines
+
 
 This guideline is only a snapshot. Please have a look [here](https://github.com/while-true-do/community/docs/) to check the latest version.
 
@@ -22,7 +24,7 @@ In this document you can find some guidance, how you can take care of bugs, subm
 -   Issue tracker: linked in every [README.md](../README.md)
 -   Website: <https://while-true-do.org>
 -   Github: <https://github.com/while-true-do/>
--   Communication: mail@while-true-do.org
+-   Communication: hello@while-true-do.org
 
 ## Report Bugs and Requests
 
@@ -55,4 +57,4 @@ Please take care of the documentation. In most cases, at least the [README.md](.
 ## Testing
 
 -   **Use a linting tool** should help to avoid common typing errors or misbehaviour of your code.
--   **Use and update** the tests, that are provided in the repos. In most cases at least some syntax checking and linting should be in place. For larger projects the testing can be little bit heavier.
+-   **Use and update** the tests, that are provided in the repositories. In most cases at least some syntax checking and linting should be in place. For larger projects the testing can be little bit heavier.
