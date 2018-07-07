@@ -10,16 +10,16 @@ Furthermore this role should be used as dependency for other roles, where users 
 
 ## Installation
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while-true-do/users)
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/users)
 
 ```
-ansible-galaxy install while-true-do.users
+ansible-galaxy install while_true_do.users
 ```
 
 Install from [Github](https://github.com/while-true-do/ansible-role-users)
 
 ```
-git clone https://github.com/while-true-do/ansible-role-users.git while-true-do.users
+git clone https://github.com/while-true-do/ansible-role-users.git while_true_do.users
 ```
 
 ## Requirements
@@ -86,7 +86,7 @@ Simple Example:
 ```yaml
 - hosts: servers
   roles:
-    - { role: while-true-do.users }
+    - { role: while_true_do.users }
   vars:
     wtd_users:
       - name: user01
@@ -101,7 +101,7 @@ Advanced Example:
 ```yaml
 - hosts: servers
   roles:
-  - { role: while-true-do.users }
+  - { role: while_true_do.users }
   vars:
     wtd_users:
       - name: user01

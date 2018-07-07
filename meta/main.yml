@@ -5,8 +5,7 @@ galaxy_info:
   description: A role to create/delete users and assign groups.
   company: while-true-do.org
 
-  issue_tracker_url: https://github.com/while-true-do/ansible-role-users/issues
-  github_branch: master
+    github_branch: master
   license: BSD
 
   min_ansible_version: 2.0
