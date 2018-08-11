@@ -1,5 +1,4 @@
 ---
-# TODO: Build better testing for multiple containers and os support
 language: python
 python: 
   - "2.7"
@@ -12,6 +11,8 @@ addons:
   apt:
     packages:
     - python-pip
+    - aspell
+    - aspell-en
 
 install:
   # Install ansible
@@ -22,15 +23,14 @@ install:
   # Check ansible version
   - ansible --version
 
-  # Create ansible.cfg with correct roles_path
-  - printf '[defaults]\nroles_path=../' >ansible.cfg
-
   # Link github repo to ansible-galaxy name
-  - ln -s  $PWD ../while-true-do.users
+  - ln -s  $PWD ../while_true_do.users
 
 # Run the tests
 script:
+  - chmod +x tests/test-ansible.sh
   - tests/test-ansible.sh
+  - chmod +x tests/test-spelling.sh
   - tests/test-spelling.sh
 
 notifications:

@@ -10,16 +10,16 @@ Furthermore this role should be used as dependency for other roles, where users 
 
 ## Installation
 
-Install from [Ansible Galaxy](https://galaxy.ansible.com/while-true-do/users)
+Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/users)
 
 ```
-ansible-galaxy install while-true-do.users
+ansible-galaxy install while_true_do.users
 ```
 
 Install from [Github](https://github.com/while-true-do/ansible-role-users)
 
 ```
-git clone https://github.com/while-true-do/ansible-role-users.git while-true-do.users
+git clone https://github.com/while-true-do/ansible-role-users.git while_true_do.users
 ```
 
 ## Requirements
@@ -58,7 +58,7 @@ None.
 
 ## Example Playbook
 
-You have to generate a hashed password as value in 'password_hash' for each user item if you want them to be able to login
+You have to generate a hashed password as value in 'password_hash' for each user item if you want them to be able to log in
 via password.
 
 For the below example, you have to have passlib installed.
@@ -79,14 +79,14 @@ python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_c
 ```
 
 If you want to use multiple ssh keys per user please aggregate them into one file.
-You are also able to use a http:// or https:// link to get a public key file, e.g. from github with <https://github.com/username.keys>
+You are also able to use a http:// or https:// link to get a public key file, e.g. from Github with <https://github.com/username.keys>
 
 Simple Example:
 
 ```yaml
 - hosts: servers
   roles:
-    - { role: while-true-do.users }
+    - { role: while_true_do.users }
   vars:
     wtd_users:
       - name: user01
@@ -101,7 +101,7 @@ Advanced Example:
 ```yaml
 - hosts: servers
   roles:
-  - { role: while-true-do.users }
+  - { role: while_true_do.users }
   vars:
     wtd_users:
       - name: user01
